@@ -18,7 +18,12 @@ export default function (id = generate()) {
 
         useEffect(() => {
             console.log(`::: P5Wrapper(${id})/useEffect()`)
-            canvas = new p5(sketch, sketchContainer.current)
+            try {
+              canvas = new p5(sketch, sketchContainer.current)
+            } catch(e) {
+              console.error(e);
+              return;
+            }
             canvas.state = state
             canvas.dispatch = dispatch
 
